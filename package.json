@@ -1,0 +1,49 @@
+{
+  "name": "@virket/messages-core",
+  "version": "1.0.0",
+  "description": "Virket Messages core module (interfaces, models, repositories, services, state management and more) for an ionic5 app",
+  "main": "index.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ngc": "ngc",
+    "build": "rm -rf aot dist && npm run ngc",
+    "publishPackage": "npm run build && npm publish",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingAndrew1024/messages-core-module.git"
+  },
+  "keywords": [
+    "ionic",
+    "messages",
+    "angular9",
+    "virket"
+  ],
+  "author": "Andres Vergara @ virket.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KingAndrew1024/messages-core-module/issues"
+  },
+  "homepage": "https://github.com/KingAndrew1024/messages-core-module#readme",
+  "devDependencies": {
+    "@angular/common": "~9.1.6",
+    "@angular/compiler": "~9.1.6",
+    "@angular/compiler-cli": "~9.1.6",
+    "@angular/core": "~9.1.6",
+    "@angular/platform-browser": "~9.1.6",
+    "@angular/platform-browser-dynamic": "~9.1.6",
+    "@types/node": "^12.11.1",
+    "zone.js": "~0.10.2",
+    "rxjs": "~6.5.1",
+    "typescript": "~3.8.3"
+  },
+  "dependencies": {
+    "@ngrx/effects": "^9.2.0",
+    "@ngrx/store": "^9.2.0"
+  }
+}
