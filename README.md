@@ -1,5 +1,5 @@
-# Virket's Contacts core module
-  Contacts module that implements
+# Virket's Messages core module
+  Messages module that implements
   * Contact types (interfaces)
   * Contact Model
   * Repository
@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 
 
 // Import ContactsCoreModule module
-import { ContactsCoreModule } from 'virket-core-contacts/dist/src';
+import { MessagesCoreModule } from '@virket/messages-core/dist/src';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { ContactsCoreModule } from 'virket-core-contacts/dist/src';
     ...
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    ContactsCoreModule.forRoot({
+    MessagesCoreModule.forRoot({
       apiUrl: environment.apiUrl,
       instanceName: environment.instanceName
     }),
