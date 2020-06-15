@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Params } from '../providers/global-params';
+
 import { IHttpBasicResponse, IMessagesRepository, IMessagesApiResponse, IMessageApiProps } from '..';
+import { AppSettingsService } from '../providers/global-params';
 
 @Injectable()
 export class MessagesRepository implements IMessagesRepository {
-    readonly BASE_URL = `${Params.getApiUrl()}/api/${Params.getInstanceName()}/v1/leads`;
+    readonly BASE_URL = `${this.appSettings.getApiUrl()}/api/${this.appSettings.getInstanceName()}/v1/leads`;
     
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient,
+        private appSettings: AppSettingsService) { }
 
     getMessages(): Observable<IHttpBasicResponse<IMessagesApiResponse>>{
         //console.log("--- EXECUTING MessagesRepository.getMessages()");

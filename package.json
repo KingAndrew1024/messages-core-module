@@ -1,6 +1,6 @@
 {
   "name": "@virket/messages-core",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Virket Messages core module (interfaces, models, repositories, services, state management and more) for an ionic5 app",
   "main": "index.js",
   "typings": "./dist/index.d.ts",
@@ -11,8 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "ngc": "ngc",
     "build": "rm -rf aot dist && npm run ngc",
-    "publishPackage": "npm run build && npm publish",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+    "publishPackage": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",

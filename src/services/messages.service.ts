@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IMessagesService, MessagesRepository, MessagesPageModel, MessageModel } from '..';
+
+import { IMessagesService } from '../core/contracts/IMessages.service';
+import { MessagesRepository } from '../repositories/messages.repository';
+import { MessagesPageModel, MessageModel } from '../core/models/message.model';
+
+
 
 @Injectable()
 export class MessagesService implements IMessagesService{

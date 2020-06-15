@@ -1,6 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as fromActions from './messages.actions';
-import { MessagesPageModel, MessageModel, IMessagesStateError, IMessagesStateSuccess } from '..';
+import { MessagesPageModel, MessageModel } from '../core/models/message.model';
+import { IMessagesStateError, IMessagesStateSuccess } from '../core/contracts/IStateErrorSuccess';
+
 
 export interface MessagesState {
     isLoading: boolean
@@ -22,7 +24,7 @@ export const initialState: MessagesState = {
     success: null
 }
 
-const messageReducer = createReducer(
+const reducer = createReducer(
     initialState,
 
     //On Begin Actions
@@ -128,6 +130,6 @@ function getSuccessActionType(type: fromActions.MessagesActionTypes) {
     return action;
 }
 
-export function reducer(state: MessagesState | undefined, action: Action) {
-    return messageReducer(state, action);
+export function messagesReducer(state: MessagesState | undefined, action: Action) {
+    return reducer(state, action);
 }

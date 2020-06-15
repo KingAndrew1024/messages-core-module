@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import * as fromSelector from '../../store/messages.selectors';
 import * as fromActions from '../../store/messages.actions';
 import * as fromReducer from '../../store/messages.reducer';
-import { MESSAGE_TYPE } from '../..';
+import { MESSAGE_TYPE } from '../../core/contracts/IMessages.repository';
 
 
 @Injectable()

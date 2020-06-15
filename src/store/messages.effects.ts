@@ -1,11 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
 import { switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+
 import * as fromActions from './messages.actions';
 import * as fromReducer from './messages.reducer';
-import { MESSAGES_SERVICE, IMessagesService, reducer } from '..';
+import { MESSAGES_SERVICE } from '../services/identifiers';
+import { IMessagesService } from '../core/contracts/IMessages.service';
+
 
 @Injectable()
 export class MessagesEffects {
@@ -61,6 +64,6 @@ export class MessagesEffects {
     ) { }
 }
 
-export interface AppState {
+ interface AppState {
     messages: fromReducer.MessagesState,
-  }
+}

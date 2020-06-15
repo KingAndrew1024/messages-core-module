@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
-import { MessageModel } from '..';
+
+import { MessageModel } from '../models/message.model';
 
 export interface IMessagesService{
     getMessages(): Observable<any>;

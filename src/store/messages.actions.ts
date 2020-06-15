@@ -1,5 +1,8 @@
 import { createAction, props } from '@ngrx/store'
-import { MessagesPageModel, MessageModel, MESSAGE_TYPE } from '..'
+import { MessagesPageModel, MessageModel } from '../core/models/message.model'
+import { MESSAGE_TYPE } from '../core/contracts/IMessages.repository'
+
+
 
 export enum MessagesActionTypes {
     GetMessagesBegin = "[Messages] Get Messages begin",

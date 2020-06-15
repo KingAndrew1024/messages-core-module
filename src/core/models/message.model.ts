@@ -1,4 +1,5 @@
-import { IMessageApiProps } from '..';
+import { IMessageApiProps } from "../contracts/IMessages.repository";
+
 
 export class MessagesPageModel implements IMessagesPageProps{
     totals: { total: number; read: number; new: number; };
