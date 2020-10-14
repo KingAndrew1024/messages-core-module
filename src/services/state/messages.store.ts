@@ -17,8 +17,8 @@ export class MessagesStore {
         return this.store.select(fromSelector.getError);
     }
 
-    loadMessagesPage() {
-        return this.store.dispatch(fromActions.GetMessagesBeginAction())
+    loadMessagesPage(sorting?: 'ASC' | 'DESC') {
+        return this.store.dispatch(fromActions.GetMessagesBeginAction({ sorting }))
     }
 
     get MessagesPageData$() {
@@ -37,7 +37,7 @@ export class MessagesStore {
         return this.store.select(fromSelector.getMessageById);
     }
 
-    setMessageAsRead(id: number){
+    setMessageAsRead(id: number) {
         this.store.dispatch(fromActions.SetMessageAsReadBeginAction({ id }));
     }
 

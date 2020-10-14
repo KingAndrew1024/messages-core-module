@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 ...
 
 
-// Import ContactsCoreModule module
+// Import the module
 import { MessagesCoreModule } from '@virket/messages-core/dist/src';
 
 @NgModule({
@@ -24,6 +24,7 @@ import { MessagesCoreModule } from '@virket/messages-core/dist/src';
     ...
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    ...
     MessagesCoreModule.forRoot({
       apiUrl: environment.apiUrl,
       instanceName: environment.instanceName
@@ -31,8 +32,6 @@ import { MessagesCoreModule } from '@virket/messages-core/dist/src';
     ...
   ],
   providers: [
-    ...
-    ContactStore,
     ...
   ],
   bootstrap: [AppComponent]

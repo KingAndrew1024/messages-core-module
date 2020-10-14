@@ -15,8 +15,8 @@ export class MessagesEffects {
     load$ = createEffect(
         () => this.actions$.pipe(
             ofType(fromActions.MessagesActionTypes.GetMessagesBegin),
-            switchMap(() => {
-                return this.service.getMessages().pipe(
+            switchMap((action: any) => {
+                return this.service.getMessages(action.sorting).pipe(
                     map((data) => fromActions.GetMessagesSuccessAction({ data })),
                     catchError(error => {
                         console.error("Couldn't get messages", error);

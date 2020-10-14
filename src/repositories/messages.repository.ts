@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { IHttpBasicResponse, IMessagesRepository, IMessagesApiResponse, IMessageApiProps } from '..';
 import { AppSettingsService } from '../providers/global-params';
+import { IMessagesRepository, IMessagesApiResponse, IMessageApiProps } from '../core/contracts/IMessages.repository';
+import { IHttpBasicResponse } from '../core/contracts/IHttpBasicResponse';
 
 @Injectable()
 export class MessagesRepository implements IMessagesRepository {

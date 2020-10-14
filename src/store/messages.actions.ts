@@ -21,7 +21,8 @@ export enum MessagesActionTypes {
 
 // GET Messages from remote API
 export const GetMessagesBeginAction = createAction(
-    MessagesActionTypes.GetMessagesBegin
+    MessagesActionTypes.GetMessagesBegin,
+    props<{sorting?: 'ASC' | 'DESC'}>()
 )
 
 export const GetMessagesSuccessAction = createAction(
