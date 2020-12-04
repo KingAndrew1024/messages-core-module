@@ -1,17 +1,16 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import * as fromActions from './messages.actions';
-import { MessagesPageModel, MessageModel } from '../core/models/message.model';
+import { Action, createReducer, on } from '@ngrx/store';
 import { IMessagesStateError, IMessagesStateSuccess } from '../core/contracts/IStateErrorSuccess';
-
+import { MessageModel, MessagesPageModel } from '../core/models/message.model';
+import * as fromActions from './messages.actions';
 
 export interface MessagesState {
-    isLoading: boolean
-    hasBeenFetched: boolean
-    pageData: MessagesPageModel
-    filteredItems: MessageModel[]
-    selectedId: number
-    error: IMessagesStateError,
-    success: IMessagesStateSuccess
+    isLoading: boolean;
+    hasBeenFetched: boolean;
+    pageData: MessagesPageModel;
+    filteredItems: MessageModel[];
+    selectedId: number;
+    error: IMessagesStateError;
+    success: IMessagesStateSuccess;
 }
 
 export const initialState: MessagesState = {
@@ -22,12 +21,12 @@ export const initialState: MessagesState = {
     selectedId: null,
     error: null,
     success: null
-}
+};
 
 const reducer = createReducer(
     initialState,
 
-    //On Begin Actions
+    // On Begin Actions
     on(fromActions.GetMessagesBeginAction, (state): MessagesState => ({
         ...state,
         error: null,
@@ -35,7 +34,7 @@ const reducer = createReducer(
         isLoading: true
     })),
 
-    //ON Success Actions
+    // ON Success Actions
     on(fromActions.GetMessagesSuccessAction, (state, action): MessagesState => ({
         ...state,
         isLoading: false,
@@ -60,23 +59,24 @@ const reducer = createReducer(
             },
             messages: [
                 ...((ml) => {
-                    let tmp = [...ml];
-                    
-                    const idx = ml.findIndex((m) => m.id == action.message.id);
+                    const tmp = [...ml];
 
-                    if(idx !== -1)
-                        tmp.splice(idx, 1, action.message)
-                    
+                    const idx = ml.findIndex((m) => m.id === action.message.id);
+
+                    if (idx !== -1) {
+                        tmp.splice(idx, 1, action.message);
+                    }
+
                     return tmp;
                 })(state.pageData.messages),
             ],
-            //chartPoints: [...state.pageData.chartPoints]*/
+            // chartPoints: [...state.pageData.chartPoints]*/
         },
         error: null,
         success: { after: getSuccessActionType(action.type) }
     })),
 
-    //ON Fail Actions
+    // ON Fail Actions
     on(fromActions.GetMessagesFailAction, (state, action): MessagesState => ({
         ...state,
         isLoading: false,
@@ -87,30 +87,30 @@ const reducer = createReducer(
         error: { after: getErrorActionType(action.type), error: action.errors },
     })),
 
-    //FILTER
+    // FILTER
     on(fromActions.FilterMessagesSuccessAction, (state, action): MessagesState => ({
         ...state,
         filteredItems: action.messageList,
         success: null
     })),
 
-    //SELECT
+    // SELECT
     on(fromActions.SelectMessageAction, (state, action): MessagesState => ({
         ...state,
         selectedId: action.messageId,
         success: null
     })),
-)
+);
 
 function getErrorActionType(type: fromActions.MessagesActionTypes) {
 
-    let action: "GET" | "SET_READ" | "UNKNOWN" = "UNKNOWN";
+    let action: 'GET' | 'SET_READ' | 'UNKNOWN' = 'UNKNOWN';
 
     switch (type) {
         case fromActions.MessagesActionTypes.GetMessagesFail:
-            action = "GET"; break;
+            action = 'GET'; break;
         case fromActions.MessagesActionTypes.SetMessageAsReadFail:
-            action = "SET_READ"; break;
+            action = 'SET_READ'; break;
     }
 
     return action;
@@ -118,13 +118,13 @@ function getErrorActionType(type: fromActions.MessagesActionTypes) {
 
 function getSuccessActionType(type: fromActions.MessagesActionTypes) {
 
-    let action: "GET" | "SET_READ" | "UNKNOWN" = "UNKNOWN";
+    let action: 'GET' | 'SET_READ' | 'UNKNOWN' = 'UNKNOWN';
 
     switch (type) {
         case fromActions.MessagesActionTypes.GetMessagesSuccess:
-            action = "GET"; break;
+            action = 'GET'; break;
         case fromActions.MessagesActionTypes.SetMessageAsReadSuccess:
-            action = "SET_READ"; break;
+            action = 'SET_READ'; break;
     }
 
     return action;

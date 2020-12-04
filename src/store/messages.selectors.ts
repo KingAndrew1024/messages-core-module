@@ -1,12 +1,12 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromReducer from './messages.reducer';
 
 export const getMessagesState = createFeatureSelector<fromReducer.MessagesState>('messages');
 
-export const _getPageData = (state: fromReducer.MessagesState) => state.pageData;
-export const _getIsLoading = (state: fromReducer.MessagesState) => state.isLoading;
-export const _getMessages = (state: fromReducer.MessagesState) => state.pageData.messages;
-export const _getFilteredItems = (state: fromReducer.MessagesState) => state.filteredItems;
+export const stateGetPageData = (state: fromReducer.MessagesState) => state.pageData;
+export const stateGetIsLoading = (state: fromReducer.MessagesState) => state.isLoading;
+export const stateGetMessages = (state: fromReducer.MessagesState) => state.pageData.messages;
+export const stateGetFilteredItems = (state: fromReducer.MessagesState) => state.filteredItems;
 
 export const getMessagesPageState = createSelector(
     getMessagesState,
@@ -15,35 +15,35 @@ export const getMessagesPageState = createSelector(
 
 export const getMessagesPageData = createSelector(
     getMessagesState,
-    _getPageData
+    stateGetPageData
 );
 
 export const getMessages = createSelector(
     getMessagesPageState,
-    _getMessages
-)
+    stateGetMessages
+);
 
 export const getIsLoading = createSelector(
     getMessagesPageState,
-    _getIsLoading
-)
+    stateGetIsLoading
+);
 
 export const getError = createSelector(
     getMessagesPageState,
     state => state.error
-)
+);
 
 export const getFilteredMessages = createSelector(
     getMessagesPageState,
-    _getFilteredItems
-)
+    stateGetFilteredItems
+);
 
 export const getMessageById = createSelector(
     getMessagesPageState,
-    state => state.pageData.messages.filter(m => +m.id == state.selectedId)[0]
-)
+    state => state.pageData.messages.filter(m => +m.id === state.selectedId)[0]
+);
 
 export const hasBeenFetched = createSelector(
     getMessagesPageState,
     state => state.hasBeenFetched
-)
+);

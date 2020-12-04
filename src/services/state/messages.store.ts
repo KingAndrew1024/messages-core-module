@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-
-import * as fromSelector from '../../store/messages.selectors';
+import { MESSAGE_TYPE } from '../../core/contracts/IMessages.repository';
 import * as fromActions from '../../store/messages.actions';
 import * as fromReducer from '../../store/messages.reducer';
-import { MESSAGE_TYPE } from '../../core/contracts/IMessages.repository';
-
+import * as fromSelector from '../../store/messages.selectors';
 
 @Injectable()
 export class MessagesStore {
     constructor(private store: Store<fromReducer.MessagesState>) { }
 
-    get Loading$() { return this.store.select(fromSelector.getIsLoading) }
+    get Loading$() { return this.store.select(fromSelector.getIsLoading); }
 
     get Error$() {
         return this.store.select(fromSelector.getError);
     }
 
     loadMessagesPage(sorting?: 'ASC' | 'DESC') {
-        return this.store.dispatch(fromActions.GetMessagesBeginAction({ sorting }))
+        return this.store.dispatch(fromActions.GetMessagesBeginAction({ sorting }));
     }
 
     get MessagesPageData$() {

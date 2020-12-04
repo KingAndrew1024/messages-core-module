@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-
 import { IHttpBasicResponse } from './IHttpBasicResponse';
 
 export interface IMessagesRepository {
@@ -12,8 +11,8 @@ export interface IMessagesApiResponse {
         total: number,
         seen: number,
         new: number
-    },
-    periods:{
+    };
+    periods: {
         today: IPeriodPoint
         yesterday: IPeriodPoint
         seven_days: IPeriodPoint
@@ -21,37 +20,37 @@ export interface IMessagesApiResponse {
         this_month: IPeriodPoint
         last_month: IPeriodPoint
         all: IPeriodPoint
-    }
-    messages: Array<IMessageApiProps>
-    chart: Array<number>
+    };
+    messages: Array<IMessageApiProps>;
+    chart: Array<number>;
 }
 
-interface IPeriodPoint{
-    pointStart: number
-    begin: number
-    end: number
+interface IPeriodPoint {
+    pointStart: number;
+    begin: number;
+    end: number;
 }
 
-export interface IMessageApiProps{
-    created_at?:string
-    data_email?:string
-    data_message?: string
-    data_name?: string
-    data_phone?: string
+export interface IMessageApiProps {
+    created_at?: string;
+    data_email?: string;
+    data_message?: string;
+    data_name?: string;
+    data_phone?: string;
 
-    id: string
-    message: string
-    name: string
-    phone: string
-    read_status: "0" | "1"
-    mail: string
-    timestamp: string
-    formatted_date: string
-    date: string
-    hour: string
-    time_ago: string
-    lead_time_ago: string
-    short_message: string
+    id: string;
+    message: string;
+    name: string;
+    phone: string;
+    read_status: '0' | '1';
+    mail: string;
+    timestamp: string;
+    formatted_date: string;
+    date: string;
+    hour: string;
+    time_ago: string;
+    lead_time_ago: string;
+    short_message: string;
 }
 
-export type MESSAGE_TYPE = "ALL" | "READ" | "NEW"; 
+export type MESSAGE_TYPE = 'ALL' | 'READ' | 'NEW';

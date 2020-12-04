@@ -1,4 +1,3 @@
-
 export class AppSettingsService {
     constructor(settings: MessagesModuleOptionsInterface) {
         this.setApiUrl(settings.apiUrl);
@@ -10,11 +9,11 @@ export class AppSettingsService {
 
     setApiUrl(url: string) { this.apiUrl = url; }
     getApiUrl() { return this.apiUrl; }
-    setInstanceName(val: string) { this.instanceName = val };
-    getInstanceName() { return this.instanceName };
+    setInstanceName(val: string) { this.instanceName = val; }
+    getInstanceName() { return this.instanceName; }
 }
 
-export interface MessagesModuleOptionsInterface{
-    apiUrl: string
-    instanceName: string
-  };
+export interface MessagesModuleOptionsInterface {
+    apiUrl: string;
+    instanceName: string;
+}
