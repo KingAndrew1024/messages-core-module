@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { MESSAGE_TYPE } from '../core/contracts/IMessages.repository';
 import { IMessagesService } from '../core/contracts/IMessages.service';
 import { MESSAGES_SERVICE } from '../services/identifiers';
 import * as fromActions from './messages.actions';
@@ -45,8 +46,10 @@ export class MessagesEffects {
             ofType(fromActions.MessagesActionTypes.FilterMessagesBegin),
             withLatestFrom(this.store$),
             switchMap(([action, store]) => {
-                const messageList = ( action as any).messageType === 'ALL' ? store.messages.pageData.messages :
-                    store.messages.pageData.messages.filter(item => item.readStatus === (( action as any).messageType === 'READ' ? 1 : 0));
+                const messageType: MESSAGE_TYPE = (action as any).messageType;
+
+                const messageList = messageType === 'ALL' ? store.messages.pageData.messages :
+                    store.messages.pageData.messages.filter(item => item.readStatus === (messageType === 'READ' ? 1 : 0));
 
                 return of(
                     fromActions.FilterMessagesSuccessAction({ messageList })
@@ -62,6 +65,6 @@ export class MessagesEffects {
     ) { }
 }
 
-interface AppState {
+export interface AppState {
     messages: fromReducer.MessagesState;
 }

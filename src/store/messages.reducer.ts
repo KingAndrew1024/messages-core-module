@@ -46,7 +46,7 @@ const reducer = createReducer(
             chartPoints: action.data.chartPoints
         },
         error: null,
-        success: null
+        success: { after: getSuccessActionType(action.type) }
     })),
     on(fromActions.SetMessageAsReadSuccessAction, (state, action): MessagesState => ({
         ...state,
@@ -70,7 +70,6 @@ const reducer = createReducer(
                     return tmp;
                 })(state.pageData.messages),
             ],
-            // chartPoints: [...state.pageData.chartPoints]*/
         },
         error: null,
         success: { after: getSuccessActionType(action.type) }

@@ -65,8 +65,6 @@ export class MessageModel implements IMessageModelProps {
         this.shortMessage = shortMsg.length >= 30 ? shortMsg.concat('...') : shortMsg;
     }
 
-    static toStorage() { }
-
     static fromApiResponse(data: IMessageApiProps): MessageModel {
         return new MessageModel({
             id: +data.id,

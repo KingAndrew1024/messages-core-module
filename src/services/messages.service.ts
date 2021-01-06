@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IMessagesRepository } from '../core/contracts/IMessages.repository';
 import { IMessagesService } from '../core/contracts/IMessages.service';
 import { MessageModel, MessagesPageModel } from '../core/models/message.model';
-import { MessagesRepository } from '../repositories/messages.repository';
+import { MESSAGES_REPOSITORY } from './identifiers';
 
 @Injectable()
 export class MessagesService implements IMessagesService {
-    constructor(private repository: MessagesRepository,
+    constructor(@Inject(MESSAGES_REPOSITORY) private repository: IMessagesRepository,
         /*private errorHandler: RepositoryErrorHandler*/) { }
 
     getMessages(sorting?: 'ASC' | 'DESC'): Observable<MessagesPageModel> {

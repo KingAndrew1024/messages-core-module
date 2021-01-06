@@ -7,7 +7,7 @@ import * as fromSelector from '../../store/messages.selectors';
 
 @Injectable()
 export class MessagesStore {
-    constructor(private store: Store<fromReducer.MessagesState>) { }
+    constructor(public store: Store<fromReducer.MessagesState>) { }
 
     get Loading$() { return this.store.select(fromSelector.getIsLoading); }
 
