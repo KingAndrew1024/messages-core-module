@@ -98,4 +98,8 @@ describe('MessagesRepository', () => {
 
         req.flush(null, { status: errorStatusCode, statusText: errorStatusText });
     });
+
+    afterEach(() => {
+        httpTestingController.verify();
+    });
 });
